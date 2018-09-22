@@ -27,7 +27,7 @@ Tunnel.prototype.init = function() {
   });
   this.renderer.setSize(ww, wh);
 
-  this.camera = new THREE.PerspectiveCamera(15, ww / wh, 0.01, 1000);
+  this.camera = new THREE.PerspectiveCamera(10, ww / wh, 0.01, 1000);
   this.camera.rotation.y = Math.PI;
   this.camera.position.z = 0.35;
 
@@ -112,8 +112,8 @@ Tunnel.prototype.initAnimation = function() {
   };
   var self = this;
   var hyperSpace = new TimelineMax({ repeat: -1 });
-  hyperSpace.to(this.textureParams, 4, {
-    repeatX: 0.3,
+  hyperSpace.to(this.textureParams, 6, {
+    repeatX: 4,
     ease: Power1.easeInOut
   });
   hyperSpace.to(
@@ -172,8 +172,8 @@ Tunnel.prototype.updateMaterialOffset = function() {
   );
 };
 Tunnel.prototype.updateCameraPosition = function() {
-  this.mouse.position.x += (this.mouse.target.x - this.mouse.position.x) / 50;
-  this.mouse.position.y += (this.mouse.target.y - this.mouse.position.y) / 50;
+  this.mouse.position.x += (this.mouse.target.x - this.mouse.position.x) / 75;
+  this.mouse.position.y += (this.mouse.target.y - this.mouse.position.y) / 25;
 
   this.mouse.ratio.x = this.mouse.position.x / ww;
   this.mouse.ratio.y = this.mouse.position.y / wh;
@@ -193,10 +193,10 @@ Tunnel.prototype.updateCurve = function() {
     index = Math.floor(i / 30);
     vertice.x +=
       (vertice_o.x + this.splineMesh.geometry.vertices[index].x - vertice.x) /
-      15;
+      10;
     vertice.y +=
       (vertice_o.y + this.splineMesh.geometry.vertices[index].y - vertice.y) /
-      15;
+      10;
   }
   this.tubeGeometry.verticesNeedUpdate = true;
 
